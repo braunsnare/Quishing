@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR-Code Phishing Warnung mit Fake-Code-Hintergrund</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: monospace, monospace;
+      background: #0D1B2A;
+      color: #EDE6DF;
+    }
+
+    /* Overlay mit Hintergrund-Code */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #121524;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
+
+    /* Fake Code-Animation im Hintergrund */
+    #fakeCode {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #00ff00;
+  white-space: pre-wrap;
+  user-select: none;
+  pointer-events: none;
+  background: transparent;
+}
+
+    @keyframes scrollCode {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+
+    /* Warnbox vor dem Hintergrund */
+    #alertBox {
+      position: relative;
+      background: rgba(90, 6, 6, 0.5);
+      border: 3px solid #AA1212;
+      padding: 20px 30px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 15px red;
+      border-radius: 8px;
+      z-index: 10000;
+    }
+
+    #alertBox h1 {
+      margin: 0 0 10px 0;
+    }
+
+    .cream {
+      color: #FFFDD0;
+      font-size: 2.5em;
+      display: block;
+    }
+
+    .pulse {
+      color: red;
+      font-size: 2.8em;
+      display: block;
+      animation: pulse 1.5s infinite;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px red;
+      }
+      50% {
+        opacity: 0.5;
+        text-shadow: 0 0 20px red, 0 0 30px red;
+      }
+    }
+
+    #alertBox p {
+      font-size: 1.1em;
+      margin: 10px 0 20px 0;
+      color: #EDE6DF;
+    }
+
+    #alertBox button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #mainContent {
+      display: none;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #7ddeff; /* Light blue title */
+    }
+
+    h3 {
+      color: #fcea83; /* Gold subtitle */
+    }
+  </style>
+</head>
+<body>
+
+<div id="overlay">
+    <pre id="fakeCode"></pre>
+
+  <div id="alertBox">
+    <h1>
+      <span class="cream">System</span> 
+      <span class="pulse">Hacked</span>
+    </h1>
+    <p>Du hättest gerade fast einen QR-Code-Phishing-Angriff erlebt. Das kann echte Folgen haben – aber keine Sorge, das war nur ein Test.</p>
+    <p>Klicke auf „OK“, um mehr zu erfahren und wie du dich schützen kannst.</p>
+    <button onclick="closeAlert()">OK</button>
+  </div>
+</div>
+
+<!-- Hauptinhalt der Schulung -->
+<div id="mainContent">
+  <h2>QR-Code Phishing</h2>
+  <p>Naja, das hätte jetzt ein Phishing-Angriff sein können. Wenn du öfter QR-Codes von draußen – an Haltestellen oder sogar auf Werbungen – einfach so scannst und denkst, dass diese keine Gefahr darstellen, hast du wahrscheinlich noch nichts von QR-Code-Phishing gehört.</p>
+
+  <h3>1. Was ist QR-Code-Phishing?</h3>
+  <p>QR-Code-Phishing (auch QRishing genannt) ist eine Methode, bei der Kriminelle manipulierte QR-Codes verwenden, um Menschen auf gefälschte Webseiten zu locken. Dort versuchen sie dann, persönliche Daten wie Passwörter, Kreditkartendaten oder andere vertrauliche Informationen zu stehlen.</p>
+
+  <p><strong>Beispiel:</strong> Du scannst einen QR-Code auf einem Plakat, der angeblich zu einer Gewinnspielseite führt. Tatsächlich öffnet sich eine Fake-Seite, die dich nach deinen Login-Daten fragt.</p>
+
+  <h3>2. Wie funktioniert QR-Code-Phishing?</h3>
+  <ul>
+    <li>Ein Angreifer erstellt einen QR-Code, der auf eine betrügerische Webseite verweist.</li>
+    <li>Er platziert diesen QR-Code an öffentlichen Orten, z.B. über echten QR-Codes oder in sozialen Medien.</li>
+    <li>Nutzer scannen den Code und landen auf der Fake-Webseite.</li>
+    <li>Dort werden sie getäuscht, um sensible Daten einzugeben oder schädliche Software herunterzuladen.</li>
+  </ul>
+
+  <h3>3. Risiken und Folgen</h3>
+  <ul>
+    <li>Diebstahl persönlicher Daten (Passwörter, Bankdaten, etc.)</li>
+    <li>Finanzielle Verluste durch Betrug</li>
+    <li>Infektion mit Malware auf dem Smartphone</li>
+    <li>Identitätsdiebstahl</li>
+  </ul>
+
+  <h3>4. Wie erkenne ich betrügerische QR-Codes?</h3>
+  <ul>
+    <li>Vorsicht bei QR-Codes auf ungewöhnlichen oder verdächtigen Plakaten, Flyern oder E-Mails.</li>
+    <li>Prüfe die URL, die sich nach dem Scannen öffnet, genau (ist sie seriös? Schreibfehler?).</li>
+    <li>Nutze QR-Code-Scanner, die die URL anzeigen, bevor sie geöffnet wird.</li>
+    <li>Sei skeptisch bei Angeboten, die zu gut klingen, um wahr zu sein.</li>
+  </ul>
+
+  <h3>5. Tipps, um Dich zu schützen</h3>
+  <ul>
+    <li>Scanne nur QR-Codes von vertrauenswürdigen Quellen.</li>
+    <li>Verwende Apps, die URLs vor dem Öffnen prüfen.</li>
+    <li>Gib keine sensiblen Daten auf Seiten ein, die dir verdächtig vorkommen.</li>
+    <li>Halte dein Smartphone mit aktuellen Sicherheitsupdates auf dem neuesten Stand.</li>
+    <li>Wenn möglich, tippe die Webadresse manuell ein, anstatt QR-Codes zu scannen.</li>
+    <li>QR-Code überklebt: Ist der QR-Code an einer Ladesäule möglicherweise überklebt, scanne ihn nicht.</li>
+  </ul>
+
+  <h3>6. Was tun, wenn Du Opfer wirst?</h3>
+  <ul>
+    <li>Ändere sofort deine Passwörter.</li>
+    <li>Kontaktiere deine Bank bei Finanztransaktionen.</li>
+    <li>Informiere IT-Sicherheitsverantwortliche (z.B. bei Firmenhandys).</li>
+    <li>Prüfe dein Smartphone mit einer Sicherheits-App.</li>
+  </ul>
+
+  <h3>Fazit</h3>
+  <p>QR-Code-Phishing ist eine unterschätzte, aber ernstzunehmende Gefahr, der jeder begegnen kann. Mit etwas Aufmerksamkeit und den richtigen Vorsichtsmaßnahmen kannst du dich jedoch effektiv schützen. Bleib wachsam, prüfe QR-Codes und URLs immer genau – so schützt du deine Daten und dein Smartphone vor ungewollten Angriffen.</p>
+</div>
+
+<script>
+  function closeAlert() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+  }
+</script>
+<script>
+    const fakeCode = `
+        Initializing system... ✔
+        Bypassing firewall... DONE
+        Accessing pizza protocol... Pizza acquired
+        Injecting caffeine into system... ☕ OK
+        Running script: hack_the_planet.sh
+        sudo rm -rf /sleep
+        Uploading meme database... [██████░░░░░░] 63%
+        404: Error handling error
+        Decrypting cat videos... meowcryption complete
+        Brute-forcing admin password: password123 ✔
+        Launching LOLZ.EXE... maximum overfun reached
+        Enabling dark mode for BIOS... success
+        Connecting to interdimensional VPN... 
+        Pinging 127.0.0.1... enemy located
+        Installing Minecraft on government server... Y/N? Y
+        Initializing sarcasm module... enabled
+        Downloading virus... from www.totallynotavirus.ru 
+        Overclocking hamster wheel... turbo mode
+        Exporting grandma’s cookie recipe... [TOP SECRET]
+        Engaging stealth mode... *cloaking activated*
+        AI has become self-aware... it’s judging your code
+        Booting system in Klingon... Qapla'!
+        Encrypting chat logs... "brb lol" becomes "9fa34!29f"
+        Error 418: I’m a teapot
+        Launching quantum calculator... Schrödinger's math
+        Installing Linux... because why not?
+        Synchronizing with Mars rover... ☄️ stable
+        Running command: sudo make me a sandwich
+        Response: "Okay, but you need root access."
+        Initiating final phase: CTRL + ALT + DEFEAT
+        System will self-destruct in... wait nevermind
+        Reticulating splines... 87% complete
+        All your base are belong to us
+        Rebooting reality... please stand by
+        `;
+  
+    const fakeCodeElement = document.getElementById("fakeCode");
+    let i = 0;
+  
+    function typeNextChar() {
+      if (i < fakeCode.length) {
+        fakeCodeElement.textContent += fakeCode[i];
+        i++;
+        setTimeout(typeNextChar, Math.random() * 30 + 15); // Random delay for natural effect
+      }
+    }
+  
+    typeNextChar();
+  </script>
+</body>
+</html>
