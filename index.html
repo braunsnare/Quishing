@@ -2,136 +2,26 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR-Code Phishing Warnung mit Fake-Code-Hintergrund</title>
-  <style>
-    body {
-      margin: 0; padding: 0;
-      font-family: monospace, monospace;
-      background: #0D1B2A;
-      color: #EDE6DF;
-    }
-
-    /* Overlay mit Hintergrund-Code */
-    #overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: #121524;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      overflow: hidden;
-    }
-
-    /* Fake Code-Animation im Hintergrund */
-    #fakeCode {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  padding: 20px;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #00ff00;
-  white-space: pre-wrap;
-  user-select: none;
-  pointer-events: none;
-  background: transparent;
-}
-
-    @keyframes scrollCode {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
-    }
-
-    /* Warnbox vor dem Hintergrund */
-    #alertBox {
-      position: relative;
-      background: rgba(90, 6, 6, 0.5);
-      border: 3px solid #AA1212;
-      padding: 20px 30px;
-      width: 350px;
-      text-align: center;
-      box-shadow: 0 0 15px red;
-      border-radius: 8px;
-      z-index: 10000;
-    }
-
-    #alertBox h1 {
-      margin: 0 0 10px 0;
-    }
-
-    .cream {
-      color: #FFFDD0;
-      font-size: 2.5em;
-      display: block;
-    }
-
-    .pulse {
-      color: red;
-      font-size: 2.8em;
-      display: block;
-      animation: pulse 1.5s infinite;
-      font-weight: bold;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 10px red;
-      }
-      50% {
-        opacity: 0.5;
-        text-shadow: 0 0 20px red, 0 0 30px red;
-      }
-    }
-
-    #alertBox p {
-      font-size: 1.1em;
-      margin: 10px 0 20px 0;
-      color: #EDE6DF;
-    }
-
-    #alertBox button {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    #mainContent {
-      display: none;
-      padding: 30px;
-    }
-
-    h2 {
-      color: #7ddeff; /* Light blue title */
-    }
-
-    h3 {
-      color: #fcea83; /* Gold subtitle */
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <div id="overlay">
-    <pre id="fakeCode"></pre>
+  <pre id="fakeCode"></pre>
 
   <div id="alertBox">
     <h1>
       <span class="cream">System</span> 
       <span class="pulse">Hacked</span>
     </h1>
-    <p>Du hättest gerade fast einen QR-Code-Phishing-Angriff erlebt. Das kann echte Folgen haben – aber keine Sorge, das war nur ein Test.</p>
+    <p>Du hättest gerade fast einen QR-Code-Phishing-Angriff erlebt.</p>
     <p>Klicke auf „OK“, um mehr zu erfahren und wie du dich schützen kannst.</p>
     <button onclick="closeAlert()">OK</button>
   </div>
 </div>
 
-<!-- Hauptinhalt der Schulung -->
 <div id="mainContent">
   <h2>QR-Code Phishing</h2>
   <p>Naja, das hätte jetzt ein Phishing-Angriff sein können. Wenn du öfter QR-Codes von draußen – an Haltestellen oder sogar auf Werbungen – einfach so scannst und denkst, dass diese keine Gefahr darstellen, hast du wahrscheinlich noch nichts von QR-Code-Phishing gehört.</p>
@@ -192,9 +82,8 @@
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
   }
-</script>
-<script>
-    const fakeCode = `
+
+  const fakeCode = `
         Initializing system... ✔
         Bypassing firewall... DONE
         Accessing pizza protocol... Pizza acquired
@@ -221,7 +110,7 @@
         Error 418: I’m a teapot
         Launching quantum calculator... Schrödinger's math
         Installing Linux... because why not?
-        Synchronizing with Mars rover... ☄️ stable
+        Synchronizing with Mars rover... stable
         Running command: sudo make me a sandwich
         Response: "Okay, but you need root access."
         Initiating final phase: CTRL + ALT + DEFEAT
@@ -229,20 +118,20 @@
         Reticulating splines... 87% complete
         All your base are belong to us
         Rebooting reality... please stand by
-        `;
-  
-    const fakeCodeElement = document.getElementById("fakeCode");
-    let i = 0;
-  
-    function typeNextChar() {
-      if (i < fakeCode.length) {
-        fakeCodeElement.textContent += fakeCode[i];
-        i++;
-        setTimeout(typeNextChar, Math.random() * 30 + 15); // Random delay for natural effect
-      }
+  `;
+
+  const fakeCodeElement = document.getElementById("fakeCode");
+  let i = 0;
+
+  function typeNextChar() {
+    if (i < fakeCode.length) {
+      fakeCodeElement.textContent += fakeCode[i];
+      i++;
+      setTimeout(typeNextChar, Math.random() * 30 + 15);
     }
-  
-    typeNextChar();
-  </script>
+  }
+
+  typeNextChar();
+</script>
 </body>
 </html>

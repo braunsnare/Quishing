@@ -1,0 +1,156 @@
+/* Grundlayout */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace, monospace;
+    background: #f4f0ec;
+    color: #121524 ;
+  }
+  
+  /* Overlay mit Hintergrund-Code */
+  #overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #121524;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  /* Fake Code-Animation im Hintergrund */
+  #fakeCode {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.2;
+    color: #137e13;
+    white-space: pre-wrap;
+    user-select: none;
+    pointer-events: none;
+    background: transparent;
+  }
+  
+  @keyframes scrollCode {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+  
+  /* Warnbox */
+  #alertBox {
+    position: relative;
+    background: rgba(90, 6, 6, 0.5);
+    border: 3px solid #950e0e;
+    padding: 20px 30px;
+    width: 350px;
+    max-width: 100%;
+    text-align: center;
+    box-shadow: 0 0 15px red;
+    border-radius: 8px;
+    z-index: 10000;
+  }
+  
+  #alertBox h1 {
+    margin: 0 0 10px 0;
+  }
+  
+  .cream {
+    color: #FFFDD0;
+    font-size: 2em;
+    display: block;
+  }
+  
+  .pulse {
+    color: red;
+    font-size: 2.8em;
+    display: block;
+    animation: pulse 1.5s infinite;
+    font-weight: bold;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      text-shadow: 0 0 10px red;
+    }
+    50% {
+      opacity: 0.5;
+      text-shadow: 0 0 20px red, 0 0 30px red;
+    }
+  }
+  
+  #alertBox p {
+    font-size: 1.1em;
+    margin: 10px 0 20px 0;
+    color: #f7f6e7;
+  }
+  
+  #alertBox button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    min-height: 44px;
+  }
+  
+  /* Hauptinhalt */
+  #mainContent {
+    display: none;
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #162532;
+  }
+  
+  h2 {
+    color: #3374ac;
+  }
+  
+  h3 {
+    color: #3e698e;
+  }
+  
+  /* Mobile Optimierung */
+  @media (max-width: 600px) {
+    #alertBox {
+      width: 90%;
+      padding: 15px 20px;
+      margin: 30px auto;
+    }
+  
+    .cream {
+      font-size: 1.6em;
+    }
+  
+    .pulse {
+      font-size: 2em;
+    }
+  
+    #alertBox p {
+      font-size: 1em;
+    }
+  
+    #alertBox button {
+      font-size: 1em;
+      padding: 10px 20px;
+    }
+  
+    #mainContent {
+      padding: 20px 15px;
+      font-size: 1rem;
+    }
+  
+    #fakeCode {
+      font-size: 12px;
+      padding: 10px;
+    }
+  }
