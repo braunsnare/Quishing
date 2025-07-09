@@ -148,12 +148,7 @@ body {
       padding: 20px 15px;
       font-size: 1rem;
     }
-     #main-content img {
-  max-width: 600px; /* max width on large screens */
-  width: 100%;      /* but shrink below 600px on smaller screens */
-  height: auto;
-}
-  
+   
     #fakeCode {
       font-size: 12px;
       padding: 10px;
