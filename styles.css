@@ -148,11 +148,10 @@ body {
       padding: 20px 15px;
       font-size: 1rem;
     }
-      #main-content img {
-  max-width: 100%;  /* Image won't exceed container width */
-  height: auto;     /* Keeps the aspect ratio */
-  display: block;   /* Removes small space below image */
-  margin-bottom: 20px;
+     #main-content img {
+  max-width: 600px; /* max width on large screens */
+  width: 100%;      /* but shrink below 600px on smaller screens */
+  height: auto;
 }
   
     #fakeCode {
